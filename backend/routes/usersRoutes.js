@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {registerUser, loginUser, getUserData } = require('../controlers/usersControllers')
+const {registerUser, loginUser, getUserData } = require('../controllers/usersControllers')
 const { protect } = require('../middleware/authMiddleware')
 
 //rutas publicas
