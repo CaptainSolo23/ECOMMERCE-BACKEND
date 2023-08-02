@@ -7,6 +7,14 @@ const Product = require('../models/productsModel')
 const registerProduct = asyncHandler ( async (req,res) => {
     //desestructuramos el req.body
     const { name, price, description, category } = req.body
+    //desestructuramos el req.user
+    const { role } = req.user
+
+    if (role !== 'admin') {
+        res.status(403);
+        throw new Error('Authorization denied: not admin');
+      }
+
     //verificar que nos pasen todos los datos requeridos
     if(!name || !price || !description || !category){
         res.status(400)
@@ -65,6 +73,18 @@ const getProductDataById = asyncHandler(async(req,res) => {
     }
     
 })
+
+const deleteProduct = asyncHandler(async (req,res) => {
+    const product = await Product.findById(req.params.id)
+    if(!product){
+        res.status(400)
+        throw new Error('La tarea no existe')
+    } else{
+        product.deleteOne()
+    // const productDeleted = await Product.findByIdAndDelete(req.params.id)
+    res.status(200).json({ message: `Borraste el producto con id ${req.params.id}`})
+    }
+})
 /**
  * 
  * AQUI VAN LOS CONTROLADORES 
@@ -74,5 +94,6 @@ const getProductDataById = asyncHandler(async(req,res) => {
 module.exports = {
     registerProduct,
     getProductData,
-    getProductDataById
+    getProductDataById,
+    deleteProduct
 }
