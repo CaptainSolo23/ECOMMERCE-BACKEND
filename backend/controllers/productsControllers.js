@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const Product = require('../models/productsModel')
 
@@ -18,7 +16,7 @@ const registerProduct = asyncHandler ( async (req,res) => {
     //verificar que nos pasen todos los datos requeridos
     if(!name || !price || !description || !category){
         res.status(400)
-        throw new Error('Faltan datos, favor de verificar')
+        throw new Error('Data incomplete')
     }
 
     //verificar que ese producto no existe
@@ -50,7 +48,6 @@ if(product){
 }
 
 })
-
 
 const getProductData = asyncHandler(async (req, res) => {
     const products = await Product.find()
