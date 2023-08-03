@@ -8,12 +8,12 @@ const orderSchema = new mongoose.Schema({
     ref:'User'
   },
   
-  products: [ // CON REFERENCIAS! ;)
+  products: // CON REFERENCIAS! ;)
     {
       type: mongoose.Schema.Types.ObjectId, // Referencia al esquema de producto
       ref: 'Product'
     }
-  ]
+  
 }, {
   timestamps: true
 });

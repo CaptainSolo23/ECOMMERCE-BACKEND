@@ -16,14 +16,14 @@ const setOrder = asyncHandler(async (req, res) => {
   // Crear la orden (Order) en la base de datos
   const order = await Order.create({
     user: _id, // Asignar el _id del usuario a la propiedad user de la orden
-    products: products._id // Asignar el array de productos al campo products de la orden
+    products: products// Asignar el array de productos al campo products de la orden
   });
 
   if (order) {
     res.status(201).json({
       _id: order._id, // Devolver el _id de la orden creada
       user: name, // Devolver el nombre del usuario
-      products: order.products // Devolver el array de productos de la orden (se podría omitir si ya lo tienes en req.body)
+      products: products // Devolver el array de productos de la orden (se podría omitir si ya lo tienes en req.body)
     });
   } else {
     res.status(400);

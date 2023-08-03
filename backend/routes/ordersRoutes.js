@@ -4,6 +4,6 @@ const { protect } = require('../middleware/authMiddleware')
 const { setOrder } = require('../controllers/orderControllers')
 
 //ruta protegida
-router.post('/order/setOrder', protect, setOrder)
+router.post('/setOrder', protect, setOrder)
 
 module.exports = router
