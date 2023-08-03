@@ -16,7 +16,7 @@ const setOrder = asyncHandler(async (req, res) => {
   // Crear la orden (Order) en la base de datos
   const order = await Order.create({
     user: _id, // Asignar el _id del usuario a la propiedad user de la orden
-    products: products // Asignar el array de productos al campo products de la orden
+    products: products._id // Asignar el array de productos al campo products de la orden
   });
 
   if (order) {
