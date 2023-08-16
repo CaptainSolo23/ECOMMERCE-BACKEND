@@ -6,9 +6,9 @@ const User = require('../models/usersModel')
 
 const registerUser = asyncHandler ( async (req,res) => {
     //desestructuramos el req.body
-    const { name, email, password, role } = req.body
+    const { name, email, password } = req.body
     //verificar que nos pasen todos los datos requeridos
-    if(!name || !email || !password ||!role){
+    if(!name || !email || !password){
         res.status(400)
         throw new Error('Faltan datos, favor de verificar')
     }
@@ -30,7 +30,7 @@ if(userExists){
         name, 
         email,
         password: hashedPassword,
-        role
+        // role
     })
 
     if(user){
@@ -38,7 +38,7 @@ if(userExists){
             _id: user._id,
             name: user.name,
             email:user.email,
-            role: user.role
+            // role: user.role
         })
     }else{
         res.status(400)
@@ -68,7 +68,7 @@ const loginUser = asyncHandler (async (req,res) => {
             _id: user._id,
             name: user.name,
             email:user.email,
-            role: user.role,
+            // role: user.role,
             token: generateToken(user._id)
         })
     } else {
