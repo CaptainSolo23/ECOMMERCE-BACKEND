@@ -13,10 +13,6 @@ const userSchema = mongoose.Schema({
     password:{
         type: String,
         required:[true, 'Porfavor teclea un password']
-    },
-    role:{
-        type: String,
-        required: true
     }
     
 },{
