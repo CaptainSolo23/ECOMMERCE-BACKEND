@@ -29,8 +29,30 @@ const setOrder = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('An error occurred');
   }
-});
+})
+
+
+const getOrders = asyncHandler (async (req,res) => {
+    
+  const orders = await Order.find({user: req.user._id})
+
+  res.status(200).json({orders})
+
+})
+
+const deleteOrders = asyncHandler(async (req,res) => {
+  const order = await Order.findById(req.params.id)
+  if(!order){
+      res.status(400)
+      throw new Error('Order not found')
+  } else{
+      order.deleteOne()
+  // const productDeleted = await Product.findByIdAndDelete(req.params.id)
+  res.status(200).json({ message: `Order deleted with id: ${req.params.id}`})
+  }
+})
 
 module.exports = {
-  setOrder
+  setOrder,
+  getOrders
 }
