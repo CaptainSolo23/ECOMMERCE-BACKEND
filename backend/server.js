@@ -9,7 +9,11 @@ const cors = require('cors')
 
 connectDB()
 
-app.use(cors())
+const corsOptions = {
+    origin: 'https://creepy-cow-bikini.cyclic.app',
+    optionsSuccessStatus: 200 // Algunos navegadores requieren este código de estado para aceptar el response
+  };
+app.use(cors(corsOptions));
 const app = express()
 
 app.use(express.json())
