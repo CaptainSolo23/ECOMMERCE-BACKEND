@@ -10,7 +10,7 @@ const cors = require('cors')
 connectDB()
 
 const corsOptions = {
-    origin: ['http://localhost:5173'], // Add more origins as needed
+    origin: ['https://creepy-cow-bikini.cyclic.app'], // Add more origins as needed
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,  // This allows sending cookies and headers along with the request
   };
