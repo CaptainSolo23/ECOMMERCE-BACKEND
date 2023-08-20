@@ -9,9 +9,14 @@ const cors = require('cors')
 
 connectDB()
 
+const corsOptions = {
+    origin: ['http://localhost:5173'], // Add more origins as needed
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,  // This allows sending cookies and headers along with the request
+  };
 
 const app = express()
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use('/api/products', require('./routes/productsRoutes'))
