@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const tareaSchema = new mongoose.Schema({
+const tareaSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User'
   },
   texto: {
-      type: mongoose.Schema.Types.String,
+      type: String,
       required: [true, 'Por favor crea una tarea']
     }
 
